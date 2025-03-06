@@ -1,0 +1,69 @@
+
+Dataset not found , missing paths ['C:\\Users\\trapx\\Desktop\\yolov7-segmentation-main\\coco\\val2017.txt']
+Running bash ./scripts/get_coco.sh ...
+Dataset download failure (0.3s)
+YOLOv5 temporarily requires wandb version 0.12.10 or below. Some features may not work as expected.
+Traceback (most recent call last):
+  File "c:\Users\trapx\Desktop\yolov7-segmentation-main\train.py", line 613, in <module>
+    main(opt)
+    ~~~~^^^^^
+  File "c:\Users\trapx\Desktop\yolov7-segmentation-main\train.py", line 509, in main
+    train(opt.hyp, opt, device, callbacks)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\trapx\Desktop\yolov7-segmentation-main\train.py", line 76, in train
+    loggers = Loggers(save_dir, weights, opt, hyp, LOGGER)  # loggers instance
+  File "c:\Users\trapx\Desktop\yolov7-segmentation-main\utils\loggers\__init__.py", line 106, in __init__
+    self.clearml = ClearmlLogger(self.opt, self.hyp)
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\trapx\Desktop\yolov7-segmentation-main\utils\loggers\clearml\clearml_utils.py", line 86, in __init__
+    self.task = Task.init(
+                ~~~~~~~~~^
+        project_name='YOLOv5',
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        # We disconnect pytorch auto-detection, because we added manual model save points in the code
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\task.py", line 604, in init
+    task = cls._create_dev_task(
+        default_project_name=project_name,
+    ...<8 lines>...
+        auto_connect_streams=auto_connect_streams,
+    )
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\task.py", line 4117, in _create_dev_task
+    task = cls(
+        private=cls.__create_protection,
+    ...<3 lines>...
+        log_to_backend=True,
+    )
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\task.py", line 217, in __init__
+    super(Task, self).__init__(**kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\backend_interface\task\task.py", line 167, in __init__
+    super(Task, self).__init__(id=task_id, session=session, log=log)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\backend_interface\base.py", line 149, in __init__
+    super(IdObjectBase, self).__init__(session, log, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\backend_interface\base.py", line 41, in __init__
+    self._session = session or self._get_default_session()
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\backend_interface\base.py", line 119, in _get_default_session
+    InterfaceBase._default_session = Session(
+                                     ~~~~~~~^
+        initialize_logging=False,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        secret_key=ENV_SECRET_KEY.get(),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\backend_api\session\session.py", line 161, in __init__
+    self._connect()
+    ~~~~~~~~~~~~~^^
+  File "C:\Users\trapx\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\clearml\backend_api\session\session.py", line 225, in _connect
+    raise MissingConfigError()
+clearml.backend_api.session.defs.MissingConfigError: It seems ClearML is not configured on this machine!
+To get started with ClearML, setup your own 'clearml-server' or create a free account at https://app.clear.ml
+Setup instructions can be found here: https://clear.ml/docs
