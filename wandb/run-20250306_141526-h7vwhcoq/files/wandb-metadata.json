@@ -1,0 +1,31 @@
+{
+  "os":  "Windows-11-10.0.26100-SP0",
+  "python":  "CPython 3.13.2",
+  "startedAt":  "2025-03-06T13:15:26.915005Z",
+  "program":  "c:\\Users\\trapx\\Documents\\GitHub\\Car-color-\\train.py",
+  "codePath":  "train.py",
+  "git":  {
+    "remote":  "https://github.com/Mazinger2077/Car-color-.git",
+    "commit":  "be7956421a4851f194c1be3d97a2729c30dad718"
+  },
+  "email":  "trapxtra@gmail.com",
+  "root":  "C:\\Users\\trapx\\Documents\\GitHub\\Car-color-",
+  "host":  "Hugo",
+  "executable":  "C:\\Users\\trapx\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+  "codePathLocal":  "train.py",
+  "cpu_count":  4,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "254899380224",
+      "used":  "227060764672"
+    }
+  },
+  "memory":  {
+    "total":  "8442306560"
+  },
+  "cpu":  {
+    "count":  4,
+    "countLogical":  8
+  }
+}

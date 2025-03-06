@@ -1,0 +1,15 @@
+{"time":"2025-03-06T14:33:42.3967136+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"C:\\Users\\trapx\\Documents\\GitHub\\Car-color-\\wandb\\run-20250306_143342-hftfsuar\\logs\\debug-core.log"}
+{"time":"2025-03-06T14:33:42.5360003+01:00","level":"INFO","msg":"created new stream","id":"hftfsuar"}
+{"time":"2025-03-06T14:33:42.5365434+01:00","level":"INFO","msg":"stream: started","id":"hftfsuar"}
+{"time":"2025-03-06T14:33:42.5370599+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"hftfsuar"}
+{"time":"2025-03-06T14:33:42.5370599+01:00","level":"INFO","msg":"sender: started","stream_id":"hftfsuar"}
+{"time":"2025-03-06T14:33:42.5365434+01:00","level":"INFO","msg":"handler: started","stream_id":"hftfsuar"}
+{"time":"2025-03-06T14:33:43.2401666+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-06T14:33:44.8380082+01:00","level":"INFO","msg":"stream: closing","id":"hftfsuar"}
+{"time":"2025-03-06T14:33:44.8380082+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-06T14:33:44.8399023+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-06T14:33:45.4169245+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-06T14:33:45.6036187+01:00","level":"INFO","msg":"handler: closed","stream_id":"hftfsuar"}
+{"time":"2025-03-06T14:33:45.6036187+01:00","level":"INFO","msg":"sender: closed","stream_id":"hftfsuar"}
+{"time":"2025-03-06T14:33:45.6036187+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"hftfsuar"}
+{"time":"2025-03-06T14:33:45.6036187+01:00","level":"INFO","msg":"stream: closed","id":"hftfsuar"}
