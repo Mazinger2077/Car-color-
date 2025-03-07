@@ -105,21 +105,9 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
     check_suffix(weights, '.pt')  # check weights
     pretrained = weights.endswith('.pt')
     if pretrained:
-        weights = attempt_download(weights)  # download if not found locally
-        try:
-            torch.serialization.add_safe_globals([Model])
-            ckpt = torch.load(weights, map_location='cpu')  # load checkpoint to CPU to avoid CUDA memory leak
-        except pickle.UnpicklingError as e:
-            raise pickle.UnpicklingError(
-                "Weights only load failed. This file can still be loaded, to do so you have two options, "
-                "do those steps only if you trust the source of the checkpoint.\n"
-                "(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` "
-                "from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely "
-                "succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.\n"
-                "(2) Alternatively, to load with `weights_only=True` "
-                "please check the recommended steps in the following error message.\n"
-                f"WeightsUnpickler error: {str(e)}"
-            )
+        with torch_distributed_zero_first(LOCAL_RANK):
+            weights = attempt_download(weights)  # download if not found locally
+        ckpt = torch.load(weights, map_location='cpu')  # load checkpoint to CPU to avoid CUDA memory leak
         model = Model(cfg or ckpt['model'].yaml, ch=3, nc=nc, anchors=hyp.get('anchors')).to(device)  # create
         exclude = ['anchor'] if (cfg or hyp.get('anchors')) and not resume else []  # exclude keys
         csd = ckpt['model'].float().state_dict()  # checkpoint state_dict as FP32
@@ -129,7 +117,6 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
     else:
         model = Model(cfg, ch=3, nc=nc, anchors=hyp.get('anchors')).to(device)  # create
     amp = check_amp(model)  # check AMP
-
     # Freeze
     freeze = [f'model.{x}.' for x in (freeze if len(freeze) > 1 else range(freeze[0]))]  # layers to freeze
     for k, v in model.named_parameters():
