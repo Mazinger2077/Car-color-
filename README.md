@@ -45,7 +45,7 @@ pip install -r requirements.txt
 - Run the code with mentioned command below.
 ```bash
 #for segmentation with detection
-python3 segment/predict.py --weights yolov7-seg.pt --source "videopath.mp4"
+python3 segment/predict.py --weights yolov7-seg.pt --source "C:\Users\trapx\Documents\GitHub\Car-color-\cars.mp4"
 
 #for segmentation with detection + Tracking
 python3 segment/predict.py --weights yolov7-seg.pt --source "videopath.mp4" --trk
