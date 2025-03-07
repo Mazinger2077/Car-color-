@@ -3,6 +3,9 @@ import os
 import platform
 import sys
 from pathlib import Path
+#.......... Color detection........
+import cv2
+from sklearn.cluster import KMeans
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -29,6 +32,47 @@ from utils.segment.general import process_mask, scale_masks, masks2segments
 from utils.segment.plots import plot_masks
 from utils.torch_utils import select_device, smart_inference_mode
 
+def detect_color(image, bbox):
+    """
+    Detect the color of the subject within the bounding box.
+    
+    Args:
+        image (np.array): The image containing the subject.
+        bbox (tuple): The bounding box coordinates (x1, y1, x2, y2).
+    
+    Returns:
+        str: The detected color.
+    """
+    x1, y1, x2, y2 = map(int, bbox)
+    roi = image[y1:y2, x1:x2]
+    avg_color_per_row = np.average(roi, axis=0)
+    avg_color = np.average(avg_color_per_row, axis=0)
+    avg_color = avg_color.astype(int)
+    
+    # Define the known colors and their RGB values
+    colors = {
+        'Red': [255, 0, 0],
+        'Green': [0, 255, 0],
+        'Blue': [0, 0, 255],
+        'Pink': [255, 192, 203],
+        'Dark Blue': [0, 0, 139],
+        'White': [255, 255, 255],
+        'Black': [0, 0, 0],
+        'Yellow': [255, 255, 0],
+        'Orange': [255, 165, 0],
+        'Purple': [128, 0, 128]
+    }
+    
+    # Calculate the Euclidean distance between the average color and each known color
+    min_distance = float('inf')
+    detected_color = 'Unknown'
+    for color_name, color_value in colors.items():
+        distance = np.linalg.norm(avg_color - np.array(color_value))
+        if distance < min_distance:
+            min_distance = distance
+            detected_color = color_name
+    
+    return detected_color
 
 @smart_inference_mode()
 def run(
@@ -184,6 +228,10 @@ def run(
             
                 # Write results
                 for j, (*xyxy, conf, cls) in enumerate(reversed(det[:, :6])):
+                    # Detect color
+                    color = detect_color(im0, xyxy)
+                    print(f"Detected color: {color}")
+
                     if save_txt:  # Write to file
                         segj = segments[j].reshape(-1)  # (n,2) to (n*2)
                         line = (cls, *segj, conf) if save_conf else (cls, *segj)  # label format
@@ -192,7 +240,7 @@ def run(
 
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
-                        label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                        label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f} {color}')
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
