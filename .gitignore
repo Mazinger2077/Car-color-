@@ -1,2 +1,3 @@
 *.egg-info
 __pycache__/
+yolov7seg/Lib/site-packages/filterpy/examples/__init__.py
